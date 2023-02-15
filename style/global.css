@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
+*{
+    margin: 0;
+    font-family: 'Baloo 2', cursive;
+    font-size: 10pt;
+    transition: all .24s ease-in-out;
+    color: #333;
+}
+
+button{
+    cursor: pointer;
+}
