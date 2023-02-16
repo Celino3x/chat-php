@@ -87,3 +87,7 @@ div.auth p.toogle{
 div.auth p.toogle:hover{
     text-decoration: underline #000;
 }
+
+div.register{
+    display: none;
+}

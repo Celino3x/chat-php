@@ -19,24 +19,50 @@
     <div class="auth login">
         <p class="title">CHAT PHP</p>
         <form action="POST" id="login">
-            <input type="text" name="email" class="field" placeholder="E-mail ou Username" required>
-            <input type="password" name="password" class="field" placeholder="Password" required>
+            <input type="text" name="email" class="field" placeholder="E-mail ou usuário" required>
+            <input type="password" name="password" class="field" placeholder="Senha" required>
             <button>Entrar</button>
         </form>
-        <p class="toogle">Não tenho conta</p>
+        <p class="toogle" onclick="$('.register').fadeIn()">Não tenho conta</p>
     </div>
 
     <div class="auth register">
         <p class="title">Criar Conta</p>
         <form action="POST" id="register">
-            <input type="text" name="username" class="field" placeholder="Username" required>
+            <input type="text" name="username" minlength="5" maxlength="15" class="field" placeholder="usuário
+            " required>
             <input type="email" name="email" class="field" placeholder="E-mail" required>
-            <input type="password" name="password" class="field" placeholder="Password" required>
-            <input type="password" name="RepPassword" class="field" placeholder="Confirmar Password" required>
+            <input type="password" name="password" minlength="8" class="field" placeholder="Senha" required>
+            <input type="password" name="RepPassword" minlength="8" class="field" placeholder="Confirmar Senha" required>
             <button>Criar</button>
         </form>
-        <p class="toogle">Já tenho conta</p>
+        <p class="toogle" onclick="$('.register').fadeOut()">Já tenho conta</p>
     </div>
+
+    <script>
+        $("#login").on('submit', function(e){
+            e.preventDefault();
+            $.ajax({
+                type: 'post',
+                url: 'process/login.php',
+                data: $('#login').serialize(),
+                beforeSend: function(){
+                    $('loading').show();
+                },
+                success: function(data){
+                    location.href = './';
+                },
+                error: function(error){
+                    Swal.fire({
+                        title: 'Oops!',
+                        text: error.statusText,
+                        icon: 'error',
+                        confirmButtonTest: 'Tentar novamente'
+                    })
+                }
+            })
+        });
+    </script>
 
     <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
